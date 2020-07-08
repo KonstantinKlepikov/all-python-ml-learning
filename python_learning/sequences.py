@@ -1,5 +1,4 @@
 from collections import deque
-import re
 
 def arbitrary_len (some_seq, form=None):
     """Function crops sequences, leaving a first, middle or last part
@@ -11,6 +10,7 @@ def arbitrary_len (some_seq, form=None):
     Returns:
         [object]: elements of cropped sequence
     """
+    
     if form == "first":
         answer, *_ = some_seq
     elif form == "middle":
