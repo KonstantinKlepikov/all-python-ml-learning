@@ -58,3 +58,38 @@ def searc_for_minmax(some_seq, mode=None, key=None, N=3):
         answer = heapq.nlargest(N, some_seq, key=key)
     
     return answer
+
+class PriorityQueue:
+    """Queue with priority
+    """
+
+    def __init__(self):
+        self._queue = []
+        self._index = 0
+
+    def push(self, item, priority):
+        """[Ad element into queue
+
+        Args:
+            item (obj): element, added into queue
+            priority (int): priority number
+
+        """
+
+        heapq.heappush(self._queue, (-priority, self._index, item))
+        # first argument has - for reverse heap
+        # index is used for determining priority when items priorities are equal
+        self._index += 1
+
+    def pop(self):
+        return heapq.heappop(self._queue)[-1]
+
+class Item:
+    """OTest objects for queue
+    """
+
+    def __init__(self, name):
+        self.name = name
+
+    def __repr__(self):
+        return 'Item({!r})'.format(self.name)
