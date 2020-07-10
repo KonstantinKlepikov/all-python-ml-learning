@@ -72,7 +72,7 @@ class PriorityQueue:
         self._index = 0
 
     def push(self, item, priority):
-        """[Ad element into queue
+        """Ad element into queue
 
         Args:
             item (obj): element, added into queue
@@ -135,3 +135,40 @@ class DictValComparison:
     
     def compSort(self):
         return sorted(zip(self.some_seq.values(), self.some_seq.keys()))
+
+class Deuduliacate(DictValComparison):
+    """Dedublicate objects in sequence
+
+    Args:
+        DictValComparison (obj): sequence
+    """
+ 
+    def dedubl_hash(self):
+        """Dedublicate objects in hashable sequence
+
+        Yields:
+            obj: dedublicated element
+        """
+
+        seen = set()
+        for item in self.some_seq:
+            if item not in seen:
+                yield item
+                seen.add(item)
+
+    def dedubl_nonhash(self, key=None):
+        """Dedublicate objects in non-hashable sequence
+
+        Args:
+            key (func, optional): function to rule of dedublication. Defaults to None.
+
+        Yields:
+            obj: dedublicated element
+        """
+
+        seen = set()
+        for item in self.some_seq:
+            val = item if key is None else key(item)
+            if val not in seen:
+                yield item
+                seen.add(val)
