@@ -1,6 +1,7 @@
 from collections import deque
 import heapq
 
+
 def arbitrary_len (some_seq, mode=None):
     """Function crops sequences, leaving a first, middle or last part
 
@@ -21,6 +22,7 @@ def arbitrary_len (some_seq, mode=None):
 
     return answer
 
+
 def search_and_scrop(some_seq, pattern, N=5):
     """Function search for N last elements
 
@@ -38,6 +40,7 @@ def search_and_scrop(some_seq, pattern, N=5):
         if pattern in elem:
             yield elem, prev_elem
         prev_elem.append(elem)
+
 
 def searc_for_minmax(some_seq, mode=None, key=None, N=3):
     """Serach smallest or largest elements in smll sets of data with heapq
@@ -58,6 +61,7 @@ def searc_for_minmax(some_seq, mode=None, key=None, N=3):
         answer = heapq.nlargest(N, some_seq, key=key)
     
     return answer
+
 
 class PriorityQueue:
     """Queue with priority
@@ -93,3 +97,41 @@ class Item:
 
     def __repr__(self):
         return 'Item({!r})'.format(self.name)
+
+
+def dict_val_comparison(some_seq, mode=None):
+    """Computate metrics of dict values and return keys
+
+    Args:
+        some_seq (dict): nonempty dict
+        mode (str, optional): type of metric, 'min', 'max', 'sorted'. Defaults to None.
+
+    Returns:
+        tuple: result of calculation
+    """
+
+    if mode == 'min':
+        answer = min(zip(some_seq.values(), some_seq.keys()))
+    elif mode == 'max':
+        answer = max(zip(some_seq.values(), some_seq.keys()))
+    elif mode == 'sorted':
+        answer = sorted(zip(some_seq.values(), some_seq.keys()))
+
+    return answer
+
+
+class DictValComparison:
+    """Some as dict_val_comparison, but with class
+    """
+
+    def __init__(self, some_seq):
+        self.some_seq = some_seq
+
+    def compMin(self):
+        return min(zip(self.some_seq.values(), self.some_seq.keys()))
+
+    def compMax(self):
+        return max(zip(self.some_seq.values(), self.some_seq.keys()))
+    
+    def compSort(self):
+        return sorted(zip(self.some_seq.values(), self.some_seq.keys()))
