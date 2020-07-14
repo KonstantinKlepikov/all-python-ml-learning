@@ -1,5 +1,6 @@
 from collections import deque
 import heapq
+from collections import Counter
 
 
 def arbitrary_len (some_seq, mode=None):
@@ -172,3 +173,43 @@ class Deuduliacate(DictValComparison):
             if val not in seen:
                 yield item
                 seen.add(val)
+
+class CountsOfItems(DictValComparison):
+    """Score any numbers of items
+    """
+
+    def most_freq(self, N=1):
+        """Return N most common items of sequence
+
+        Args:
+            N (int, optional): number of items. Defaults to 1.
+
+        Returns:
+            list of tupples: finded items of sequence
+        """
+
+        count = Counter(self.some_seq)
+
+        return count.most_common(N)
+
+    def most_freq_operation(self, another_seq, N=1, mode='sum'):
+        """Mathematic opertion with Counter objects
+
+        Args:
+            another_seq (obj): sequence same type as some_seq
+            NN (int, optional): number of items. Defaults to 1.
+            mode (str, optional): "sum", "diff". Defaults to 'sum'.
+
+        Returns:
+            list of tupples: finded items of sequences
+        """
+
+        count1 = Counter(self.some_seq)
+        count2 = Counter(another_seq)
+
+        if mode == 'sum':
+            s = count1 + count2
+        elif mode == 'diff':
+            s = count1 - count2
+
+        return s.most_common(N)
