@@ -213,3 +213,11 @@ class CountsOfItems(DictValComparison):
             s = count1 - count2
 
         return s.most_common(N)
+
+class Member:
+
+    def __init__(self, member_id):
+        self.member_id = member_id
+
+    def __repr__(self):
+        return 'Member({0})'.format(self.member_id) 
