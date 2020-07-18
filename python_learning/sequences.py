@@ -1,6 +1,9 @@
 from collections import deque
 import heapq
 from collections import Counter
+from operator import itemgetter
+from itertools import groupby
+from collections import defaultdict
 
 
 def arbitrary_len (some_seq, mode=None):
@@ -221,3 +224,42 @@ class Member:
 
     def __repr__(self):
         return 'Member({0})'.format(self.member_id) 
+
+class SortSeqOfDicts:
+    """Sort a sequence of dicts
+    """
+
+    def __init__(self, seq_of_dict):
+        """Class constructor
+
+        Args:
+            seq_of_dict (sequence fo dicts): one of the dicts key is 'date'
+        """
+
+        self.some_seq = seq_of_dict
+
+    def sort_and_group_by_date(self):
+        """Sort sequence of dict by 'date' and print sorted result
+        """
+
+        self.some_seq.sort(key=itemgetter('date'))
+
+        for date, items in groupby(self.some_seq, key=itemgetter('date')):
+            print(date)
+            for i in items:
+                print(' ', i)
+
+    def sort_and_group_in_large_structure(self, date):
+        """Sort sequence of dict and print only dicts with given 'date'
+
+        Args:
+            date (str): 'date' value in dicts
+        """
+
+        seq_by_date = defaultdict(list)
+
+        for row in self.some_seq:
+            seq_by_date[row['date']].append(row)
+
+        for r in seq_by_date[date]:
+            print(r)
