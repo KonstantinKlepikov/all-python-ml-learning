@@ -1,4 +1,4 @@
-# most realictic class example
+# most realictic class example (with composite architecture)
 
 class Person:
 
@@ -34,35 +34,47 @@ class Manager(Person):
     """
 
     def __init__(self, name, pay):
-        """Redefine Person class constructor with new value of attribute job
-        Calling method __init__ as class-method of parrent class
-        with new value of attr job
+        """In composite method we inject an exemplar of class Person 
+        into class with constructor
 
         Args:
             name (str): 
             pay (int): 
         """
 
-        Person.__init__(self, name, 'mng', pay)
-
-    def giveRise_bad(self, percent, bonus=.1):
-        """Example of bad solution of inheritans - ctrl-c ctrl-v code
-        """
-
-        self.pay = int(self.pay * (1 + percent + bonus))
+        self.person = Person(name, 'mng', pay)
 
     def giveRise(self, percent, bonus=.1):
-        """Good example
-        Redefinition with new attribute
-        Calling method giveRise as class-method of parrent class
-        Redefine self.pay
+        """We intersepr call of the attributes and delegate it
+        to object self.person
 
         Args:
             percent (int): number with float to change pay definition
             bonus (int): number with float to change pay definition
         """
 
-        Person.giveRise(self, percent + bonus)
+        self.person.giveRise(percent + bonus)
+
+    def __getattr__(self, attr):
+        """Delegate all other attributes
+
+        Args:
+            attr (obj):
+
+        Returns:
+            obj: attr
+        """
+
+        return getattr(self.person, attr)
+
+    def __repr__(self):
+        """We must reboot __repr__
+
+        Returns:
+            str: 
+        """
+
+        return str(self.person)
 
 
 if __name__ == "__main__":
