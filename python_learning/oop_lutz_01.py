@@ -1,6 +1,8 @@
 # most realictic class example
 
-class Person:
+from oop_lutz_01_classtools import AttrDisplay
+
+class Person(AttrDisplay):
 
     def __init__(self, name, job=None, pay=0):
         self.name = name
@@ -23,10 +25,7 @@ class Person:
             percent (int): number with float to change pay definition
         """
 
-        self.pay = int(self.pay * (1 + percent))
-
-    def __repr__(self):
-        return 'Person: {0}, {1}, {2}'.format(self.name, self.job, self.pay)
+        self.pay = int(self.pay * (1 + percent)) 
 
 
 class Manager(Person):

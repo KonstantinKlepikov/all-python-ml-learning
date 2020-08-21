@@ -49,8 +49,8 @@ class Manager(Person):
         to object self.person
 
         Args:
-            percent (int): number with float to change pay definition
-            bonus (int): number with float to change pay definition
+            percent (float): float to change pay definition
+            bonus (float): float to change pay definition
         """
 
         self.person.giveRise(percent + bonus)
@@ -76,6 +76,44 @@ class Manager(Person):
 
         return str(self.person)
 
+class Department:
+    """Aggregated injection of objects - 
+    example of composition and inheritans.
+    Department compouse other objects. Manager inherit Perdon
+    """
+
+    def __init__(self, *args):
+        """Define list of objects (class exemplars)
+        """
+
+        self.members = list(args)
+
+    def addMember(self, person):
+        """Add object
+
+        Args:
+            person (obj): Perdon class exemplar
+        """
+
+        self.members.append(person)
+
+    def giveRises(self, percent):
+        """Rededine giveRise methods of all exemplars
+
+        Args:
+            percent (float): float to change pay definition
+        """
+
+        for person in self.members:
+            person.giveRise(percent)
+
+    def showAll(self):
+        """Print all results
+        """
+
+        for person in self.members:
+            print(person)
+
 
 if __name__ == "__main__":
     """Test for Person
@@ -96,3 +134,9 @@ if __name__ == "__main__":
     tom.giveRise(.1)
     print(tom.lastName())
     print(tom)
+
+    # example of ingects of objects to another independed class
+    development = Department(bob, sue)
+    development.addMember(tom)
+    development.giveRises(.1)
+    development.showAll()
