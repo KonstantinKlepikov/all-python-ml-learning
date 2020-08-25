@@ -30,3 +30,6 @@ images/**
 !images/.gitkeep
 !images/???.png
 !images/*.dot
+
+python_cookbook/**
+!python_cookbook/.gitkeep
