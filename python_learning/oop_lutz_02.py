@@ -29,6 +29,20 @@ class Child(Parrent):
         Parrent.__init__(self, x) #run __init__ of superclass
         pass
 
+# example of replacement method
+class Parrent1_rep:
+
+    def method(self):
+        print('It is Parrent_rep.method')
+
+
+class Child_rep(Parrent1_rep):
+
+    def method(self): # replace method
+        print('starting Child_rep.method')
+        Parrent1_rep.method(self) # call for original method
+        print('endingChild_rep.method')
+
 
 if __name__ == "__main__":
 
@@ -52,4 +66,10 @@ if __name__ == "__main__":
 
     # __init__ inheritans
     I = Child(1, 2)
-    print(dir(I))
+
+    # example of replacement method
+    xr = Parrent1_rep()
+    xr.method()
+
+    xr = Child_rep()
+    xr.method()
