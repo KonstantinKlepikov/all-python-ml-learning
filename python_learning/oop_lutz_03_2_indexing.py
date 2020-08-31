@@ -27,6 +27,23 @@ class IndexAndSlice(SimpleIndexer):
         else:
             print('slicing', index.start, index.stop, index.step)
 
+class StepperIndex(SimpleIndexer):
+
+    def __getitem__(self, i):
+        """Example of realisation for operathor:
+        if __getitem__() is define, we can us it for operathor 'for',
+        because 'for; is a step by step index, for as long IndexError
+        isnt rised
+
+        Args:
+            SimpleIndexer (object): iterated object
+
+        Returns:
+            obj: if indexing - indexed element * 2, if indexing in 'for' - 
+            result of operations inside 'for' * 2
+        """
+        return self.data[i] * 2
+
 
 if __name__ == '__main__':
 
@@ -37,4 +54,10 @@ if __name__ == '__main__':
     Y[7]
     Y[1:22:2]
     Y[1:]
+
+    Z = StepperIndex()
+    Z.data = 'Spam'
+    print(Z[-1]) # __getitem__ for indexing
+    for item in Z: # __getitem__ for 'for' cycle
+        print(item, end=' ') 
 
