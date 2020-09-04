@@ -33,3 +33,6 @@ images/**
 
 python_cookbook/**
 !python_cookbook/.gitkeep
+
+ply/**
+ply
