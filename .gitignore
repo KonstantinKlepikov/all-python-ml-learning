@@ -32,7 +32,14 @@ images/**
 !images/*.dot
 
 python_cookbook/**
-!python_cookbook/.gitkeep
+python_cookbook
 
 ply/**
 ply
+
+beginners-pytorch-deep-learning/**
+beginners-pytorch-deep-learning
+
+pytorch_learning/test
+pytorch_learning/train
+pytorch_learning/val
