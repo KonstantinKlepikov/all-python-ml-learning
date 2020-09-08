@@ -1,0 +1,6 @@
+spam
+SpAm
+SPAM
+ham
+hAm
+HAM
