@@ -44,3 +44,5 @@ z = Selfless(2)
 Selfless.normal(z, 3, 4) # handed
 z.normal(3, 4) # auto
 Selfless.selfless(3, 4) #simple function (with no exemplar)
+# z.selfless(3, 4) # crashed, because is recived exemplar, but dont waited for it
+# Sefless.normal(3, 4) # is crashed because no exemplar is gived
