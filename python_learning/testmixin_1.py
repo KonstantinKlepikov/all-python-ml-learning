@@ -10,7 +10,7 @@ class Main:
     def ham(self):
         pass
 
-class Sub(Main, ListInstance): # mixin ha, and __str__
+class Sub(Main, ListInstance): # mixin ham, and __str__
 
     def __init__(self):
         Main.__init__(self)
@@ -19,3 +19,9 @@ class Sub(Main, ListInstance): # mixin ha, and __str__
 
     def spam(self):
         pass
+
+
+if __name__ == "__main__":\
+
+    X = Sub()
+    print(X) # used a mixed method __str__

@@ -25,6 +25,5 @@ class ListInstance:
 
 if __name__ == "__main__":
 
-    import textmixin
-    X = textmixin.Sub()
-    print(X) # usage of mixed __str__
+    import testmixin
+    testmixin.tester(ListInstance)
