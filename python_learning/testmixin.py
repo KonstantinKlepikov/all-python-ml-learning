@@ -45,4 +45,4 @@ if __name__ == "__main__":
 
     testByNames('listinstance', 'ListInstance', True)
     testByNames('listinherited', 'ListInherited', True)
-    # testByNames('listtree', 'ListTree', False)
+    testByNames('listtree', 'ListTree', False)
