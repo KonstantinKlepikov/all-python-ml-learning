@@ -43,3 +43,9 @@ beginners-pytorch-deep-learning
 pytorch_learning/test
 pytorch_learning/train
 pytorch_learning/val
+
+mnist_train
+mnist_train/**
+
+runs
+runs/**
