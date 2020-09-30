@@ -18,6 +18,11 @@ class C(A):
     attr = 2
 
 
+class C1:
+
+    pass
+
+
 class D(B, C): # check C befor A
 
     attr1 = B.attr # choice route - A before B
@@ -30,6 +35,10 @@ class D(B, C): # check C befor A
         C.method(self) # call for C -> A
     """
 
+class D1(B, C1): # inheritans without diamond
+
+    pass
+
 
 if __name__ == "__main__":
 
@@ -37,3 +46,9 @@ if __name__ == "__main__":
     print(x.attr) # 2
     print(x.attr1) # 1
     x.method() # A.method
+
+    # MRO
+    print(D.__mro__) # D, B, C, A, object
+
+    # non-diamond cheeme
+    print(D1.__mro__) # D1, B, A, C1, object
