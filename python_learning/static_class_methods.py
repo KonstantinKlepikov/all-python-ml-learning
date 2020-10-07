@@ -53,6 +53,32 @@ class Sub(SpamStat): # with static method we can realise inheritance
 class Other(SpamStat): # inheritance without redefinition
     pass
 
+"""Count of exemplars by class method
+"""
+class SpamCls:
+
+    numInstances = 0
+
+    def __init__(self):
+        SpamCls.numInstances = SpamCls.numInstances + 1
+
+    @classmethod
+    def printNumInstances(cls):
+        print('Number of created instances: {0} {1}'.format(cls.numInstances, cls))
+
+
+class SubCls(SpamCls):
+
+    @classmethod
+    def printNumInstances(cls):
+        print('Extrastuff...', cls)
+        SpamCls.printNumInstances()
+
+
+class OtherCls(SpamCls):
+
+    pass
+
 
 if __name__ == "__main__":
 
@@ -93,3 +119,28 @@ if __name__ == "__main__":
 
     e = Other() # without redefinition of classmethod
     e.printNumInstances()
+
+
+    # count with classmethod
+    a = SpamCls()
+    b = SpamCls()
+    a.printNumInstances()
+    SpamCls.printNumInstances()
+
+    # attention - classmethod gets only last class
+    x = SpamCls()
+    z = SubCls()    
+    z.printNumInstances()
+    # Extrastuff... <class '__main__.SubCls'>
+    # 4 <class '__main__.SpamCls'>
+
+    SubCls.printNumInstances()
+    # Extrastuff... <class '__main__.SubCls'>
+    # 4 <class '__main__.SpamCls'>
+
+    x.printNumInstances() 
+    # 4 <class '__main__.SpamCls'>
+
+    c = OtherCls()
+    c.printNumInstances() 
+    # 5 <class '__main__.OtherCls'>
