@@ -62,4 +62,4 @@ if __name__ == "__main__":
     Z2.act() # not spam
 
     trans = E()
-    trans.act() # spam not spam
+    trans.act() # not spam spam
