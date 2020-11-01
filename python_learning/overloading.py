@@ -1,4 +1,4 @@
-# simple example of roperathors overloading
+# simple example of operathors overloading
 
 class Number:
 

@@ -64,7 +64,7 @@ class Computation5:
         self.value = value
 
     def __add__(self, other):
-        if isinstance(other, Computation5): #check type to prevent nesting
+        if isinstance(other, Computation5): # check type to prevent nesting
             other = other.value
         return Computation5(self.value + other)
 

@@ -1,4 +1,4 @@
-# example of overloading __lt__, __gt__ and other
+# example of overloading __lt__, __gt__ 
 
 class C:
     """Overloading __lt__ and __gt__
