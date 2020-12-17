@@ -59,9 +59,5 @@ print(open('content/temp.txt', 'r', encoding='utf-8').read()) # AÄBèC
 # for BOM usage look in book
 
 
-# names of files and unicode streams
-
-
-
 if __name__ == "__main__":
     pass
