@@ -4,19 +4,19 @@ class Person:
 
     
     def __init__(self, name):
-        self.name_ = name
+        self._name = name
 
     def getName(self):
         print('fetch...')
-        return self.name_
+        return self._name
 
     def setName(self, value):
         print('change...')
-        self.name_ = value
+        self._name = value
 
     def delName(self):
         print('remove...')
-        del self.name_
+        del self._name
     
     name = property(getName, setName, delName, 'name property doc')
 
