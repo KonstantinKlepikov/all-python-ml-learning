@@ -7,10 +7,10 @@ class tracer:
         self.calls = 0
         self.func = func
 
-    def __call__(self, *args):
+    def __call__(self, *args, **kwargs):
         self.calls += 1
         print('call {0} to {1}'.format(self.calls, self.func.__name__))
-        self.func(*args)
+        return self.func(*args, **kwargs)
 
 
 class Person:
@@ -64,10 +64,10 @@ class tracerDesc:
         self.calls = 0
         self.func = func
 
-    def __call__(self, *args):
+    def __call__(self, *args, **kwargs):
         self.calls += 1
         print('call {0} to {1}'.format(self.calls, self.func.__name__))
-        self.func(*args)
+        return self.func(*args, **kwargs)
 
     def __get__(self, instance, owner):
         return wrapperDesc(self, instance)
@@ -93,6 +93,39 @@ class Person2:
         self.pay *= (1.0 + percent)
 
     @tracerDesc
+    def lastName(self):
+        return self.name.split()[-1]
+
+
+# alternative
+class tracerDescNoWrap:
+
+    def __init__(self, func):
+        self.calls = 0
+        self.func = func
+
+    def __call__(self, *args, **kwargs):
+        self.calls += 1
+        print('call {0} to {1}'.format(self.calls, self.func.__name__))
+        return self.func(*args, **kwargs)
+
+    def __get__(self, instance, owner):
+        def wrapper(*args, **kwargs):
+            return self(instance, *args, **kwargs)
+        return wrapper
+
+
+class Person3:
+
+    def __init__(self, name, pay):
+        self.name = name
+        self.pay = pay
+
+    @tracerDescNoWrap
+    def giveRaise(self, percent):
+        self.pay *= (1.0 + percent)
+
+    @tracerDescNoWrap
     def lastName(self):
         return self.name.split()[-1]
 
@@ -128,3 +161,9 @@ if __name__ == "__main__":
     print(bob.lastName())
     print(bob.lastName())
 
+
+    bob = Person3('Bob Smith', 50000)
+    bob.giveRaise(.25)
+    print(bob.pay)
+    print(bob.lastName())
+    print(bob.lastName())
