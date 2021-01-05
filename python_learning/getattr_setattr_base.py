@@ -140,7 +140,7 @@ class GetAttr:
     def __getattr__(self, attr): # intercept only undefibed attr3
         print('get ' + attr)
         if attr == 'attr3':
-            return 3
+            return 'attr3'
         else:
             raise AttributeError(attr)
 
@@ -153,7 +153,7 @@ class GetAttribute:
     def __getattribute__(self, attr): # intercept all attribute
         print('get ' + attr)
         if attr == 'attr3':
-            return 3
+            return 'attr = 3'
         else:
             return object.__getattribute__(self, attr)
 
